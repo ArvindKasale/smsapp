@@ -1,0 +1,24 @@
+<div id="content">
+	<div class="block" id="block-tables">
+		<div class="secondary-navigation">
+			<ul class="wat-cf">
+				<li class="first">
+					<%= link_to "Dashboard",root_path%>
+				</li>
+				<li class="active">
+					<%= link_to "Show","#"%>
+				</li>
+			</ul>
+		</div>
+		<div class="content">
+			<h2 class="title">Sales Information</h2>
+			<div class="inner">
+				<%= render :partial=>"show", :object=> @profile%>
+				<div class="group navform wat-cf">
+					<%= link_to "Edit",edit_sale_item_path, :class=>"button" %>
+					<%= link_to "Cancel", sale_items_path, :class=>"button"%>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

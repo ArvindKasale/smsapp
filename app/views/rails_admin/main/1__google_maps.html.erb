@@ -1,0 +1,82 @@
+<div class="field location_latitude">
+    <label for="location_longitude">
+        &nbsp;
+    </label>
+    <div id="map_canvas" style="width:500px; height: 300px;border:1px solid #111111;">
+    </div>
+</div>
+<div class="field location_latitude">
+    <label for="location_longitude">
+        Latitude
+    </label>
+    <input type="text" value="<%= field.value %>" style="" size="50" name="location[latitude]" maxlength="255" id="location_latitude" class="string  ">
+    <p class="help">
+        Required 
+    </p>
+</div>
+<script type ="text/javascript">
+        
+    	var map;
+    	var marker;
+    	
+        function initialize(){
+        
+		var lat = $j('#location_latitude').val() == "" ? 18.975 : $j('#location_latitude').val();
+		var lon = $j('#location_longitude').val() == "" ? 72.82583 : $j('#location_longitude').val();
+	//	var lat = 18.975;
+	//	var lon = 72.82583;
+	
+            var myLatlng = new google.maps.LatLng(lat, lon);
+            
+            var myOptions = {
+                zoom: 11,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            
+            };
+            
+            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            
+            addMarker(myLatlng)
+            
+            function addMarker(location){
+            
+                    
+                    marker = new google.maps.Marker({
+                        position: location,
+                        draggable: true,
+                        title: "This is My Location!"
+                    
+                    });
+                    
+                    marker.setAnimation(google.maps.Animation.DROP);
+                    marker.setMap(map)
+                    map.setCenter(location);
+    				//alert('found')
+    				
+    				   google.maps.event.addListener(marker, 'drag', function(event){
+                
+                    $j("#location_latitude").val(event.latLng.toString().split(",")[0].replace("(", ""));
+                    $j("#location_longitude").val(event.latLng.toString().split(",")[1].replace(")", "").replace(" ", ""));
+                    
+                });
+                
+                google.maps.event.addListener(marker, 'dragend', function(event){
+                    map.setCenter(event.latLng);
+                    
+                });
+    				
+                }
+                
+                google.maps.event.addListener(marker, 'dragend', function(event){
+                    map.setCenter(event.latLng);
+                    
+                });
+                
+            
+        }
+		$j(document).ready(function(){
+			initialize();
+		});
+		
+</script>

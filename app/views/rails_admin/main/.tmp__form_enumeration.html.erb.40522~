@@ -1,0 +1,2 @@
+<div class="field order_order_id"><label for="order_order_id">Order</label><input type="text" style="" size="50" name="order[order_id]" maxlength="255" id="order_order_id" class="string  ">
+<p class="help">Optional. 255 characters or fewer. </p></div>

@@ -1,0 +1,32 @@
+<div id="content">
+	<div class="block" id="block-tables">
+		<div class="secondary-navigation">
+			<ul class="wat-cf">
+				<li class="first">
+					<%= link_to "Dashboard",root_path%>
+				</li>
+				<li class="active">
+					<%= link_to "My Profile","#"%>
+				</li>
+			</ul>
+		</div>
+		<div class="content">
+			<h2 class="title">My Profile</h2>
+			<div class="inner">
+				<%if @profile.new_record?%>
+					<div class="information">
+						No profile data found.						
+					</div>
+					<div class="group navform wat-cf">
+						<%=link_to "New Profile", new_profile_path,:class=>"button"%>
+					</div>
+				<%else%>
+					<%=render :partial=>"show", :object=> @profile%>
+					<div class="group navform wat-cf">
+						<%=link_to "Edit Profile", edit_profile_path(@profile),:class=>"button"%>
+					</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>

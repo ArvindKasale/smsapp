@@ -1,0 +1,9 @@
+# pack-refs with: peeled 
+d77d636c6334d807cd18213c51743383924a4774 refs/heads/stable
+5cff485c4477bc300243b3869a56fe29f08eeba8 refs/heads/relations-search
+53ed602b27c57096522452d842599d28f2bd671b refs/heads/rails-3.1-new-ui
+39ffb6214b8796bd5abd6216da38d0cb7f6eec30 refs/heads/rails-3.1
+9b008d16c616c843e27726ae92d87b84a97a048d refs/heads/old_ui
+889987fe5ee4a86a632a1f4fe14eb04b4089d399 refs/heads/master
+a3789105645167409e562d0b083bdd6e2f8dde6d refs/heads/composite-primary-keys
+cc9c2fb96a8e5e6524fe9c01890a502ff27475bd refs/heads/capybara

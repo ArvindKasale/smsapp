@@ -1,0 +1,22 @@
+<div id="content">
+	<div id="block-tables" class="block">
+		<div class="secondary-navigation">
+			<ul class="wat-cf">
+				<li class="first">
+					<%= link_to "Dashboard",root_path%>
+				</li>
+				<li class="active">
+					<%= link_to "Edit","#"%>
+				</li>
+			</ul>
+		</div>
+		<div class="content">
+			<h2 class="title">Edit Daily Sales For <%= current_user.name%>
+			<div class="clear20"></div>
+			<div class="inner">
+				<%= render :partial => 'form' %>
+			</div>
+		</div>
+	</div>
+</div>
+

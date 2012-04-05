@@ -1,0 +1,61 @@
+<div id='content'>
+    <div id="block-tables" class="block">
+        <div class="content">
+            <h2 class="title">Listing Policies matching your requirement</h2>
+            <div class="inner">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th width="300px">
+                                &nbsp;
+                            </th>
+                            <th>
+                                Company
+                            </th>
+                            <th>
+                                Policy
+                            </th>
+                            <th>
+                                Interest rate
+                            </th>
+                            <th>
+                                Premium (Rs)
+                            </th>
+                            <th>
+                                Total maturity Amount (Rs)
+                            </th>
+                            <th >
+                                Buy
+                            </th>
+                        </tr>
+                        <% @policy.each do |p| %>
+                        <tr class="<%= cycle('odd','even') %>">
+                            <td>
+                                <%= image_tag(p.avatar.url(:thumb),:width => "30%") %>
+                            </td>
+                            <td>
+                                <%= p.company_name %>
+                            </td>
+                            <td>
+                                <%= p.policy_name %>
+                            </td>
+                            <td>
+                                <%= int = p.interest_rate.to_f %>%
+                            </td>
+                            <td>
+                                <%= @premium %>&nbsp;for <%= @tenure %>&nbsp;years
+                            </td>
+                            <td>
+                                <%= calculate(@premium,@tenure,p) %>
+                            </td>
+                            <td >
+                                <a href="#">Buy</a>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

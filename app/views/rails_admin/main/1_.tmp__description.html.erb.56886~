@@ -1,0 +1,4 @@
+<div class="category_status field">
+                    <div class="label"><%= field.label %> </div>
+                    <div class="value"><%= raw field.value %></div>
+                  </div>

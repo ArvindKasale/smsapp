@@ -1,0 +1,121 @@
+<div id='content'>
+    <div id="block-tables" class="block">
+        <div class="content">
+            <h2 class="title">Ask your Question to our Experts</h2>
+            <div class="inner">
+                <%= form_tag("/maps/question") %>
+                <fieldset>
+                    <legend>
+                        Ask a Question
+                    </legend>
+                    <div class="field ">
+                        <label for="order_">
+                           Question
+                        </label>
+                        <div class="selecto hover focus" id="uniform-filter_select">
+                          
+                          <textarea name=question class="text" rows="20" cols="80" ></textarea>
+                        </div>
+                        <p class="help">
+                            Required. Max. 500 characters
+                        </p>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        About You
+                    </legend>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Name
+                        </label>
+                        <input type="text" style="" size="50" name="policy[name]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. our Name
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Gender
+                        </label>
+                        <input type="radio" value="Male" name="policy[gender]" checked="checked" maxlength="255" id="policy_company_name" class="radio  ">Male&nbsp;&nbsp;<input type="radio" Value="Female" name="policy[gender]" maxlength="255" id="policy_company_name" class="radio  ">Female
+                        <p class="help">
+                            Required. our Name
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Date of Birth
+                        </label>
+                        <input type="text" style="" size="50" style="width:235px;" name="policy[dob]" maxlength="255" id="policy_date" class="string  ">
+                        <p class="help">
+                            Required. Your Date of Birth
+                        </p>
+                    </div>
+                    <script>
+                      $j(document).ready(function($){
+                              $("#policy_date").datetimepicker({"datepicker":{"dateFormat":"MM dd, yy","dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"firstDay":1,"monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"value":""},"timepicker":{"amPmText":["",""],"hourText":"Hour","minuteText":"Minute","showPeriod":false,"value":""},"showTime":false});
+                      });
+                    </script>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            State
+                        </label>
+                        <input type="text" style="" size="50" name="policy[state]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. 
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            City
+                        </label>
+                        <input type="text" style="" size="50" name="policy[city]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. 
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Email
+                        </label>
+                        <input type="text" style="" size="50" name="policy[email]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. 
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Contact No.
+                        </label>
+                        <input type="text" style="" size="50" name="policy[phone]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. 
+                        </p>
+                    </div>
+                    <div class="group navform wat-cf">
+                        <button type="submit" name="_save" class="button">
+                            <img src="/stylesheets/rails_admin/theme/activo/images/icons/tick.png?1311059048" alt="Save">Ask Question
+                        </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>    
+        form label {
+            width: 200px !important;
+        }
+        
+        p.help {
+            margin-left: 205px !important;
+        }
+        
+        div.selector, select {
+            width: 255px !important;
+        }
+        
+        div.selector span {
+            width: 225px !important;
+    </style>

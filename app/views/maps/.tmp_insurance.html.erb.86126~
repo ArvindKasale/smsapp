@@ -1,0 +1,52 @@
+<div id='content'>
+    <div id="block-tables" class="block">
+        <div class="content">
+            <h2 class="title">Listing Policies matching your requirement</h2>
+            <div class="inner">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                        	<th>&nbsp</th>
+                            <th>
+                                Company
+                            </th>
+                            <th>
+                                Policy
+                            </th>
+                            <th>
+                                Premium
+                            </th>
+                            <th>
+                                Total maturity Amount
+                            </th>
+                            <th class="last">
+                               Buy
+                            </th>
+                        </tr>
+						<% @policy.each do |p| %>
+                        <tr class="<%= cycle('odd','even') %>" >
+                            <td>
+                                <%= image_tag(p.avatar.url(:thumb)) %>
+                            </td>
+                            <td>
+                                <%= p.company_name %>
+                            </td>
+                            <td>
+                                 <%= p.policy_name %>
+                            </td>
+                            <td>
+                                <%= @premium %> for <%= @locking %> years
+                            </td>
+                            <td class="last">
+                                <a href="#">show</a>
+                                | <a href="#">edit</a>
+                                | <a href="#">destroy</a>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

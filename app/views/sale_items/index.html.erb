@@ -1,0 +1,41 @@
+<div id="content">
+	<div id="block-tables" class="block">
+		<div class="secondary-navigation">
+			<ul class="wat-cf">
+				<li class="first">
+					<%= link_to "Dashboard",root_path%>
+				</li>
+				<li class="active">
+					<%= link_to "List","#"%>
+				</li>
+			</ul>
+		</div>
+		<div class="content">
+			<div class="control">
+				<%= link_to "Add new",new_sale_item_path,:class=>"button"%>
+			</div>
+			<h2 class="title">Sale Details for <%= current_user.name%>
+			<div class="clear20"></div>
+			<div class="inner">
+				<table class="table grid">
+					<tr>
+						<th>Product Name</th>
+						<th>Quantity</th>
+						<th>Total Price</th>
+						<th>Sale Date</th>
+						<th class="last"></th>
+					</tr>
+					<%@sales_items.each do |sale|%>
+					<tr>
+						<td><%= sale.product.name%></td>
+						<td><%= sale.quantity%></td>
+						<td>Rs. <%=sprintf "%.2f"% sale.total_cost unless sale.total_cost.nil? %></td>
+						<td><%= sale.sale_date%></td>
+						<td class="last"><%= link_to "Show",sale_item_path(sale)%> | <%= link_to "Edit",edit_sale_item_path(sale)%> | <%= link_to "Delete",destroy_me_sale_items_path(:id=>sale.id), :confirm=>"Are you sure"%></td>
+					</tr>
+					<%end%>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+<div class="fieldset">
+	
+	
+<div class="field">
+	<div class="label">Product Name</div>
+	<div class="value"><%=@sales_item.product.name%></div>
+</div>	
+<div class="field">
+	<div class="label">Quantity</div>
+	<div class="value"><%=@sales_item.quantity%></div>
+</div>
+<div class="field">
+	<div class="label">Total Cost</div>
+	<div class="value">Rs. <%=sprintf"%.2f"%@sales_item.total_cost unless @sales_item.total_cost.nil?%></div>
+</div>
+<div class="field">
+	<div class="label">Date</div>
+	<div class="value"><%=@sales_item.sale_date%></div>
+</div>
+</div>

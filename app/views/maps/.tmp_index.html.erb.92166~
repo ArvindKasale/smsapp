@@ -1,0 +1,185 @@
+<div id='content'>
+    <div id="block-tables" class="block">
+        <div class="content">
+        	<% if flash[:notice] %>
+                <div class="flash ask">
+                    <div class="message notice">
+                        <p>
+                            <%= flash[:notice]%>
+                        </p>
+                    </div>
+                </div>
+                <% end %>
+            <div class="ask">
+                <button onclick="javascript:window.location.href='/ask';" type="submit" name="_save" class="button" style="float:right;">
+                    <img src="/stylesheets/rails_admin/theme/activo/images/icons/question.png?1311059048" alt="Save">Ask a Question
+                </button>
+            </div>
+            <style>
+                .ask {
+                    clear: both;
+                    height: 30px;
+                    padding: 10px;
+                }
+            </style>
+            <h2 class="title">Compare Quotes for
+                Investment Plans
+                from all leading insurance companies!</h2>
+            <div class="inner">
+                
+                <%= form_tag("/maps/insurance") %>
+                <fieldset>
+                    <legend>
+                        About Policy
+                    </legend>
+                    <div class="field ">
+                        <label for="order_">
+                            Premium
+                        </label>
+                        <div class="selecto hover focus" id="uniform-filter_select">
+                            <%= select "policy","premium", ["1000","5000","10,000","20,000","50,000","1,00,000"], {:include_blank => false},{ :class => "enum" } %>
+                        </div>
+                        <p class="help">
+                            Required. In Rs
+                        </p>
+                    </div>
+                    <div class="field ">
+                        <label for="order_">
+                            Investment Tenure
+                        </label>
+                        <div class="selecto hover focus" id="uniform-filter_select">
+                            <%= select "policy","tenure", ["5","10","15","20","30"], {:include_blank => false}, { :class => "enum" } %>
+                        </div>
+                        <p class="help">
+                            Required. In Years
+                        </p>
+                    </div>
+                    <div class="field ">
+                        <label for="order_">
+                            Locking Period
+                        </label>
+                        <div class="selecto hover focus" id="uniform-filter_select">
+                            <%= select "policy","locking", ["1","2","3","5"], {:include_blank => false}, { :class => "enum" } %>
+                        </div>
+                        <p class="help">
+                            Required. In Years
+                        </p>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        About You
+                    </legend>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Name
+                        </label>
+                        <input type="text" style="" size="50" name="policy[name]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. our Name
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Gender
+                        </label>
+                        <input type="radio" value="Male" name="policy[gender]" checked="checked" maxlength="255" id="policy_company_name" class="radio  ">Male&nbsp;&nbsp;<input type="radio" Value="Female" name="policy[gender]" maxlength="255" id="policy_company_name" class="radio  ">Female
+                        <p class="help">
+                            Required. our Name
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Date of Birth
+                        </label>
+                        <input type="text" style="" size="50" style="width:235px;" name="policy[dob]" maxlength="255" id="policy_date" class="string  ">
+                        <p class="help">
+                            Required. Your Date of Birth
+                        </p>
+                    </div>
+                    <script>
+                        $j(document).ready(function($){
+                            $("#policy_date").datetimepicker({
+                                "datepicker": {
+                                    "dateFormat": "MM dd, yy",
+                                    "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                                    "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                                    "dayNamesMin": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                                    "firstDay": 1,
+                                    "monthNames": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                                    "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                                    "value": ""
+                                },
+                                "timepicker": {
+                                    "amPmText": ["", ""],
+                                    "hourText": "Hour",
+                                    "minuteText": "Minute",
+                                    "showPeriod": false,
+                                    "value": ""
+                                },
+                                "showTime": false
+                            });
+                        });
+                    </script>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            State
+                        </label>
+                        <input type="text" style="" size="50" name="policy[state]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. 
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            City
+                        </label>
+                        <input type="text" style="" size="50" name="policy[city]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. 
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Email
+                        </label>
+                        <input type="text" style="" size="50" name="policy[email]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. 
+                        </p>
+                    </div>
+                    <div class="field policy_company_name">
+                        <label for="policy_company_name">
+                            Contact No.
+                        </label>
+                        <input type="text" style="" size="50" name="policy[phone]" maxlength="255" id="policy_company_name" class="string  ">
+                        <p class="help">
+                            Required. 
+                        </p>
+                    </div>
+                    <div class="group navform wat-cf">
+                        <button type="submit" name="_save" class="button">
+                            <img src="/stylesheets/rails_admin/theme/activo/images/icons/tick.png?1311059048" alt="Save">Find Policies
+                        </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>    
+        form label {
+            width: 200px !important;
+        }
+        
+        p.help {
+            margin-left: 205px !important;
+        }
+        
+        div.selector, select {
+            width: 255px !important;
+        }
+        
+        div.selector span {
+            width: 225px !important;
+    </style>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  sale_date: 2012-03-17
+  product_id: 1
+  quantity: 1
+  total_cost: 9.99
+
+two:
+  user_id: 1
+  sale_date: 2012-03-17
+  product_id: 1
+  quantity: 1
+  total_cost: 9.99
