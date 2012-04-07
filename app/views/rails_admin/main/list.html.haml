@@ -70,10 +70,10 @@
               - ''
             %option{"data-field-label" => field.label, "data-field-name" => field.name, "data-field-options" => field_options, "data-field-type" => field.type, "data-field-value" => ""}= field.label
 
-      - if authorized? :new, @abstract_model
+      - if check_edit_access
         = action_button rails_admin_new_path, t("admin.list.add_new"), :add
 
-      - if authorized? :delete, @abstract_model
+      - if check_delete_access
         = action_button '#', t("admin.list.delete_selected"), :cross, :onclick => "$j('#bulk_action').val('delete'); $j('#bulk_form').submit(); return false;"
 
       = form_tag(rails_admin_list_post_path(params.merge(:model_name => @abstract_model.to_param).except(*%w[page filters query])), :method => :post, :remote => true, :class => "form", :style => "display:inline") do

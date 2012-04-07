@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
 
 
   validates_presence_of :name, :category_id, :alias
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :alias
   validates_length_of :name, :maximum=>50
 
   RailsAdmin.config do |config|

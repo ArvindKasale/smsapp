@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120406184547) do
+ActiveRecord::Schema.define(:version => 20120407120218) do
 
   create_table "agent_calls", :force => true do |t|
     t.integer  "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120406184547) do
     t.datetime "updated_at"
     t.datetime "duration"
     t.text     "message"
+    t.string   "category"
   end
 
   create_table "categories", :force => true do |t|
@@ -154,7 +155,7 @@ ActiveRecord::Schema.define(:version => 20120406184547) do
     t.integer  "role_id",                               :default => 3
     t.string   "name",                   :limit => 50
     t.text     "address",                :limit => 50
-    t.text     "phone_no",               :limit => 10
+    t.string   "phone_no",               :limit => 10
     t.date     "birth_date"
   end
 
