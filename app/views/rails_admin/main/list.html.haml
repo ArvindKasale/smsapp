@@ -131,9 +131,9 @@
                 %td.other.right{ :style => "#{'display: none' if @other.include?("right")}" }= link_to "...", other_right, :remote => true
                 %td.last
                   = action_icon(rails_admin_show_path(@abstract_model, object.id), :show, t("admin.list.show_action"))
-                  - if can_edit
+                  - if check_edit_access
                     = action_icon(edit_path, :edit, t("admin.list.edit_action"))
-                  - if authorized? :delete, @abstract_model, object
+                  - if check_delete_access
                     = action_icon(rails_admin_delete_path(@abstract_model, object.id), :cross, t("admin.list.delete_action"))
 
         .pagination
