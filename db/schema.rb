@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331121507) do
+ActiveRecord::Schema.define(:version => 20120406184547) do
 
   create_table "agent_calls", :force => true do |t|
     t.integer  "user_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20120331121507) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "alias"
   end
 
   create_table "profiles", :force => true do |t|
@@ -112,13 +113,29 @@ ActiveRecord::Schema.define(:version => 20120331121507) do
     t.datetime "updated_at"
   end
 
-  create_table "shop_keepers", :force => true do |t|
+  create_table "shop_categories", :force => true do |t|
     t.string   "name"
-    t.text     "address"
-    t.text     "products"
     t.boolean  "status",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "shop_keepers", :force => true do |t|
+    t.string   "name"
+    t.text     "address_1"
+    t.text     "products"
+    t.boolean  "status",           :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "contact_person"
+    t.string   "address_2"
+    t.string   "street"
+    t.string   "area"
+    t.string   "city"
+    t.string   "pincode"
+    t.string   "district"
+    t.string   "state"
+    t.integer  "shop_category_id"
   end
 
   create_table "users", :force => true do |t|

@@ -27,7 +27,7 @@
 					</tr>
 					<%@sales_items.each do |sale|%>
 					<tr>
-						<td><%= sale.product.name%></td>
+						
 						<td><%= sale.quantity%></td>
 						<td>Rs. <%=sprintf "%.2f"% sale.total_cost unless sale.total_cost.nil? %></td>
 						<td><%= sale.sale_date%></td>

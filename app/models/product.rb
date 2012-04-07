@@ -1,17 +1,18 @@
 class Product < ActiveRecord::Base
 
   belongs_to :category
-  has_many :product_prices
+  has_many :product_prices, :dependent=> :destroy
 
 
-  validates_presence_of :name, :category_id
+  validates_presence_of :name, :category_id, :alias
   validates_uniqueness_of :name
-
+  validates_length_of :name, :maximum=>50
 
   RailsAdmin.config do |config|
     config.model ::Product do
     list do
       field :name
+      field :alias
       field :description
       field :category_id
       field :price do
@@ -23,6 +24,7 @@ class Product < ActiveRecord::Base
 
   edit do
       field :name
+      field :alias
       field :description
       field :category_id
     end

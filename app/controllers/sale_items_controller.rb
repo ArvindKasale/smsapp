@@ -15,6 +15,8 @@ class SaleItemsController < ApplicationController
     p "###########################"
     p current_user.id 
     @sales_items=SaleItem.where("user_id=?",current_user.id)
+    p @sales_items
+    p Product.all
   end
   
   def destroy
