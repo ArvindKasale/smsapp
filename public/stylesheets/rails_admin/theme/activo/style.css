@@ -241,19 +241,19 @@ hr {
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
-    border :1px solid #bbb;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.3); }
+    border :0px solid #bbb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.3); }
     #main .block .content, #full-main .block .content {
       padding-top: 1px; }
       #main .block .content .inner, #full-main .block .content .inner {
         padding: 0 15px 15px; }
       #main .block .content h2, #full-main .block .content h2 {
         margin-left: 15px;
-        font-size: 18px;
+        font-size: 13px;
         text-transform: normal;
-        letter-spacing: -1px;
+        letter-spacing: 0px;
         line-height: 1.2em; }
       #main .block .content p, #full-main .block .content p {
         font-size: 13px;
