@@ -54,7 +54,8 @@
     <div id='container'>
         <div id='header' style="background:#333333;height:80px;border-bottom:2px solid #999;">
             <h1 class='title'><a href ="/"><span class='red'>JAS Inc</span><span class="white"> ltd.</span></a></h1>
-            <div id="user-navigation" style="top:22px;">
+            <% if user_signed_in? %>
+			<div id="user-navigation" style="top:22px;">
                 <ul class="wat-cf">
                 	<% if check_edit_access %>
                     <li>
@@ -74,6 +75,7 @@
                     </li>
                 </ul>
             </div>
+			<% end %>
         </div>
         <div id='wrapper' class="wat-cf">
             <div id='main' style="width:75%;">
