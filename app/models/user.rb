@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
+
+  has_attached_file :pic, :styles => {:thumb => "100x100" }
+  # add a delete_<asset_name> method: 
+  attr_accessor :delete_pic
+  before_validation { self.pic.clear if self.delete_pic == '1' }
+
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,7 +13,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :address, :birth_date, :phone_no
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :address, :birth_date, :phone_no, :pic
   #attr_reader :name
   validates_uniqueness_of :name
   #validates_format_of :email, :with=>"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|edu|gov|biz|info)\b", :message=>"format is invalid."
@@ -41,7 +48,10 @@ class User < ActiveRecord::Base
         field :email
         field :address
         field :birth_date
-        field :phone_no
+        field :pic do
+        :paperclip
+        end
+        field :phone_no, :string
         field :password
         field :password_confirmation
         field :role_id

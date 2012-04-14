@@ -7,19 +7,28 @@ module ApplicationHelper
   
   
   def check_edit_access
+    if  current_user.role.nil?
+     return false 
+    else
     if current_user.role.role == 'Admin' or current_user.role.role == 'Super Admin' or current_user.role.role == 'Data Entry'
       return true
     else
       return false
     end
+    end
   end
   
   def check_delete_access
+    if current_user.role.nil? 
+    return false
+    else    
      if current_user.role.role == 'Admin' or current_user.role.role == 'Super Admin'
       return true
     else
       return false
     end
+    end
+    
   end
   
 end

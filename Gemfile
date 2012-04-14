@@ -7,7 +7,7 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 # gem 'rails'
 #gem 'unicorn'
 gem 'sqlite3'
-#gem "paperclip", "~>2.3"
+gem "paperclip", "~>2.3"
  gem "cocaine"
 # gem 'fastercsv'
 # Use unicorn as the web server
