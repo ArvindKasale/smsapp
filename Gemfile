@@ -12,7 +12,7 @@ gem "paperclip", "~>2.3"
 # gem 'fastercsv'
 # Use unicorn as the web server
 # gem 'unicorn'
-
+  gem 'cancan'
 # Deploy with Capistrano
 # gem 'capistrano'
 # gem 'mongrel', '1.2.0.pre2'
