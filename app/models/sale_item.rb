@@ -4,12 +4,12 @@ class SaleItem < ActiveRecord::Base
   belongs_to :product
   before_save :calculate_total
 
-  validates_presence_of :product_id, :quantity
+  validates_presence_of :user_id, :product_id, :quantity, :sale_date
   validates_numericality_of :quantity
 
   scope :find_sales_of_user, lambda{|user_id| where("user_id=?",user_id)}
 
-  validate :check_date_if_future
+  #validate :check_date_if_future
   before_save :calculate_total
 
   # def self.calculate_total_cost(sales_item)

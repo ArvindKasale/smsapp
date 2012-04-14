@@ -7,6 +7,8 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :category_id, :alias
   validates_uniqueness_of :name, :alias
   validates_length_of :name, :maximum=>50
+  validates_format_of :name,:alias, :with=>/^[\w &_,\/.-]*$/, :message=>"has invalid characters. Only alphanumeric characters _-.,&/ and white spaces are allowed"
+ 
 
   RailsAdmin.config do |config|
     config.model ::Product do

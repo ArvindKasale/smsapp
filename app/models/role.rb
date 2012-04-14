@@ -2,6 +2,7 @@ class Role < ActiveRecord::Base
 
   validates_presence_of :role
   validates_uniqueness_of :role
+  validates_format_of :role, :with=>/^[a-zA-Z\s]+$/, :message=>"has invalid characters"
         
   has_many :users
 
