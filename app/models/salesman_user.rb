@@ -7,7 +7,7 @@ class SalesmanUser < User
         field :email
         field :address
         field :birth_date
-        field :phone_no
+        field :phone_no, :string
         field :password
         field :password_confirmation
         
