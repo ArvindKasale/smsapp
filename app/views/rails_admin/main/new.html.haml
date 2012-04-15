@@ -1,3 +1,7 @@
+<script type="text/javascript" src="/javascripts/rails_admin/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="/javascripts/script.js"></script>
+
+
 -# FIXME: too much duplication between this page and edit page
 - head_style "rails_admin/form.css"
 - head_javascript "rails_admin/application.js"
@@ -15,3 +19,4 @@
         - @model_config.create.with(:object => @object).visible_groups.each do |fieldset|
           = render :partial => 'form_fieldset', :locals => { :fieldset => fieldset, :form => form, :object => @object }
         = render :partial => 'submit_buttons'
+

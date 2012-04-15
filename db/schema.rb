@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407120218) do
+ActiveRecord::Schema.define(:version => 20120414112148) do
 
   create_table "agent_calls", :force => true do |t|
     t.integer  "user_id"
@@ -42,12 +42,20 @@ ActiveRecord::Schema.define(:version => 20120407120218) do
 
   create_table "distributors", :force => true do |t|
     t.string   "name"
-    t.string   "phone_no"
+    t.string   "phone_no_1"
     t.string   "email"
-    t.text     "address"
+    t.text     "address_1"
     t.boolean  "status",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address_2"
+    t.string   "street"
+    t.string   "area"
+    t.string   "city"
+    t.string   "pincode"
+    t.string   "district"
+    t.string   "state"
+    t.string   "phone_no_2"
   end
 
   create_table "product_prices", :force => true do |t|
@@ -154,9 +162,24 @@ ActiveRecord::Schema.define(:version => 20120407120218) do
     t.datetime "updated_at"
     t.integer  "role_id",                               :default => 3
     t.string   "name",                   :limit => 50
-    t.text     "address",                :limit => 50
-    t.string   "phone_no",               :limit => 10
+    t.text     "address_1",              :limit => 50
+    t.string   "phone_no_1",             :limit => 10
     t.date     "birth_date"
+    t.string   "type"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
+    t.string   "address_2"
+    t.string   "street"
+    t.string   "area"
+    t.string   "city"
+    t.string   "pincode"
+    t.string   "district"
+    t.string   "state"
+    t.string   "phone_no_2"
+    t.string   "emergency_name"
+    t.string   "emergency_no"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
