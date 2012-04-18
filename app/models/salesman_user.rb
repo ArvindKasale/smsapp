@@ -1,14 +1,25 @@
 class SalesmanUser < User
 
+  has_many :sale_items
+  validates_presence_of :area
+
  RailsAdmin.config do |config|
     config.model ::SalesmanUser do
+      label "Salesman Bio Data"
       edit do
         field :name
         field :email
+        field :email_2
         field :address_1
-         field :address_2
-         field :street
-         field :area
+         field :address_2 do
+           label "Village Address"
+         end
+      #   field :street
+         field :area, :enum do
+            enum do
+            ["East", "West"]
+          end
+         end
          field :city
          field :pincode
          field :district

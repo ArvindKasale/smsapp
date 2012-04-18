@@ -2,6 +2,8 @@ class Product < ActiveRecord::Base
 
   belongs_to :category
   has_many :product_prices, :dependent=> :destroy
+  has_and_belongs_to_many :shop_keepers
+  has_and_belongs_to_many :companies
 
 
   validates_presence_of :name, :category_id, :alias
@@ -29,6 +31,7 @@ class Product < ActiveRecord::Base
       field :alias
       field :description
       field :category_id
+      field :companies
     end
 
     

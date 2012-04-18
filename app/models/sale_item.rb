@@ -1,6 +1,6 @@
 class SaleItem < ActiveRecord::Base
 
-  belongs_to :user
+  belongs_to :salesman_user, :foreign_key => :user_id
   belongs_to :product
   before_save :calculate_total
 
@@ -27,13 +27,17 @@ class SaleItem < ActiveRecord::Base
   RailsAdmin.config do |config|
     config.model ::SaleItem do
       edit do
-        field :user_id
+        field :user_id do
+          label "Sales Man"
+        end
         field :sale_date
         field :product_id
         field :quantity
       end
       list do
-        field :user_id
+        field :user_id do
+          label "Sales Man"
+        end
         field :sale_date
         field :product_id
         field :quantity
@@ -60,6 +64,13 @@ class SaleItem < ActiveRecord::Base
       p "Invalid Date"
       errors.add(:sale_date, "can't be in the future.")
     end
+  end
+  
+  def before_save
+    
+    if self.user_id == nil
+      self.user_id = User.first.id
+    end  
   end
 
 end

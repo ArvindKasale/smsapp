@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
 
   RailsAdmin.config do |config|
     config.model ::Category do
-      
+      label "Product Category"
       list do
         field :name
         field :description
