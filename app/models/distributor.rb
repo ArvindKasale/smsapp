@@ -17,11 +17,11 @@ class Distributor < ActiveRecord::Base
              "Address Line 1"
            end
          end
-         field :address_2 do
-           label do
-             "Address Line 2"
-           end
-         end
+         #field :address_2 do
+          # label do
+           #  "Address Line 2"
+           #end
+         #end
          field :street
          field :area
          field :city
@@ -30,7 +30,10 @@ class Distributor < ActiveRecord::Base
          field :state
          field :phone_no_1
          field :phone_no_2
-         field :email
+         field :email do
+           label "Email 1"
+         end
+         field :email_2 
          field :status
        end
        list do

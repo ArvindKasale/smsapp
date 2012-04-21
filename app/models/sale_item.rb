@@ -3,10 +3,11 @@ class SaleItem < ActiveRecord::Base
   belongs_to :salesman_user, :foreign_key => :user_id
   belongs_to :product
   before_save :calculate_total
-
+  
   validates_presence_of :user_id, :product_id, :quantity, :sale_date
-  validates_numericality_of :quantity
-
+  validates_numericality_of :quantity, :only_integer=>true
+  validate :quantity_is_positive
+  
   scope :find_sales_of_user, lambda{|user_id| where("user_id=?",user_id)}
 
   #validate :check_date_if_future
@@ -71,6 +72,14 @@ class SaleItem < ActiveRecord::Base
     if self.user_id == nil
       self.user_id = User.first.id
     end  
+  end
+  
+  def quantity_is_positive
+    p "&&&&&&&&********************&&&&&&&&&&&&"
+    unless self.quantity > 0
+      errors.add(:quantity, "cant'be zero or negative.")  
+    end
+      
   end
 
 end

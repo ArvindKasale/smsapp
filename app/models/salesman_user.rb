@@ -8,8 +8,10 @@ class SalesmanUser < User
       label "Salesman Bio Data"
       edit do
         field :name
-        field :email
-        field :email_2
+        field :email do
+          label "Email 1"
+        end
+        field :email_2 
         field :address_1
          field :address_2 do
            label "Village Address"
@@ -25,11 +27,21 @@ class SalesmanUser < User
          field :district
          field :state
         field :birth_date
-        field :phone_no_1, :string
-        field :phone_no_2,:string
+        field :phone_no_1, :string do
+          label "Mobile 1"
+        end
+        field :phone_no_2,:string do
+          label "Mobile 2"
+        end
+        field :home_phone_1, :string do
+          label "Home Phone 1"
+        end
+        field :home_phone_2, :string do
+          label "Home Phone 2"
+        end
         field :password
         field :password_confirmation
-	field :emergency_name do
+	      field :emergency_name do
            label do
              "Emergency Contact Name"
            end
@@ -37,6 +49,11 @@ class SalesmanUser < User
          field :emergency_no do
            label do
              "Emergency Contact no."
+           end
+         end
+         field :status, :enum do
+           enum do
+              ["Working","Non Working"]   
            end
          end
         

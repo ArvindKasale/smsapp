@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120414112148) do
+ActiveRecord::Schema.define(:version => 20120421123204) do
 
   create_table "agent_calls", :force => true do |t|
     t.integer  "user_id"
@@ -34,10 +34,15 @@ ActiveRecord::Schema.define(:version => 20120414112148) do
     t.string   "name"
     t.string   "phone_no"
     t.string   "email"
-    t.text     "products"
     t.boolean  "status",     :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email_2"
+  end
+
+  create_table "companies_products", :id => false, :force => true do |t|
+    t.integer "company_id"
+    t.integer "product_id"
   end
 
   create_table "distributors", :force => true do |t|
@@ -56,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20120414112148) do
     t.string   "district"
     t.string   "state"
     t.string   "phone_no_2"
+    t.string   "email_2"
   end
 
   create_table "product_prices", :force => true do |t|
@@ -72,6 +78,11 @@ ActiveRecord::Schema.define(:version => 20120414112148) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "alias"
+  end
+
+  create_table "products_shop_keepers", :id => false, :force => true do |t|
+    t.integer "shop_keeper_id"
+    t.integer "product_id"
   end
 
   create_table "profiles", :force => true do |t|
@@ -180,6 +191,12 @@ ActiveRecord::Schema.define(:version => 20120414112148) do
     t.string   "phone_no_2"
     t.string   "emergency_name"
     t.string   "emergency_no"
+    t.string   "email_2"
+    t.string   "blood_group"
+    t.string   "work_exp"
+    t.string   "home_phone_1"
+    t.string   "home_phone_2"
+    t.string   "status"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
