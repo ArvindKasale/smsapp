@@ -1,5 +1,12 @@
 class SalesmanUser < User
 
+
+  has_attached_file :pic, :styles => {:thumb => "100x100" }
+  # add a delete_<asset_name> method: 
+  attr_accessor :delete_pic
+ before_validation { self.pic.clear if self.delete_pic == '1' }
+
+
   has_many :sale_items
   validates_presence_of :area
 
@@ -56,7 +63,9 @@ class SalesmanUser < User
               ["Working","Non Working"]   
            end
          end
-        
+        field :pic do
+            :paperclip
+         end
       end
       list do
         field :name

@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   #validates_format_of :email_2, :with=>"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|edu|gov|biz|info)\b", :message=>"format is invalid."
   #validates_length_of :phone_no_1, :emergency_no, :is => 10
   validates_numericality_of :phone_no_1, :emergency_no
-  validates_presence_of :role_id,:name,:birth_date, :address_1, :address_2, :city, :state, :district, :phone_no_1, :emergency_name, :emergency_no
+  validates_presence_of :role_id,:name,:birth_date, :address_1, :city, :state, :district, :phone_no_1, :emergency_name, :emergency_no
   validates_format_of :name, :emergency_name, :with=>/^[a-zA-Z\s]+$/, :message=>"has invalid characters. Only alphabets and spaces are allowed"
   #validates_format_of :password, :with=>/^\w*(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*$/, :message=>"must contain atleast one capital letter, one number and no special characters."
   validates_format_of :city,:district,:state, :with=>/^[\w &_,\/.-]*$/, :message=>"has invalid characters. Only alphanumeric characters _-.,&/ and white spaces are allowed"
@@ -50,10 +50,7 @@ class User < ActiveRecord::Base
          field :password
          field :password_confirmation
          field :birth_date
-	 field :pic do
-            :paperclip
-         end
-         field :address_1
+	       field :address_1
          field :address_2
          field :street
          field :area

@@ -13,6 +13,7 @@
     %li{:class => "#{"active" if tab_titles.include? @page_type} #{"more" unless children.empty?}"}
       - if children.size == 1
         = link_to(model.label.pluralize, rails_admin_list_path(:model_name => model.abstract_model.to_param))
+        = link_to(image_tag('/stylesheets/rails_admin/theme/activo/images/icons/24/add-hover.png'), rails_admin_new_path(:model_name => model.abstract_model.to_param), :style => 'margin:-30px 10px 0 0;padding:0;float:right',:alt => 'Add New', 'original-title'.to_sym => 'Add New')
       - else
         %a{:href => "#"}= model.dropdown ? t(model.dropdown, :default => model.dropdown) : model.label.pluralize
         %ul
