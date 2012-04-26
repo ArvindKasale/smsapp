@@ -1,4 +1,5 @@
 class ShopKeeper < ActiveRecord::Base
+
   belongs_to :shop_category
   has_and_belongs_to_many :products
   validates_presence_of :name,:address_1,:pincode,:district,:city,:state,:shop_category_id

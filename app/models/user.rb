@@ -17,13 +17,14 @@ class User < ActiveRecord::Base
   #attr_reader :name
   validates_uniqueness_of :name
   #validates_format_of :email_2, :with=>"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|edu|gov|biz|info)\b", :message=>"format is invalid."
-  #validates_length_of :phone_no_1, :emergency_no, :is => 10
-  validates_numericality_of :phone_no_1, :emergency_no
+  validates_length_of :phone_no_1,:phone_no_2, :emergency_no, :is => 10
+  validates_length_of :pincode, :is => 6
+  validates_numericality_of :phone_no_1,:phone_no_2, :emergency_no, :pincode
   validates_presence_of :role_id,:name,:birth_date, :address_1, :city, :state, :district, :phone_no_1, :emergency_name, :emergency_no
-  validates_format_of :name, :emergency_name, :with=>/^[a-zA-Z\s]+$/, :message=>"has invalid characters. Only alphabets and spaces are allowed"
+  validates_format_of :name, :emergency_name, :city, :district, :state, :with=>/^[a-zA-Z\s]+$/, :message=>"has invalid characters. Only alphabets and spaces are allowed"
   #validates_format_of :password, :with=>/^\w*(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*$/, :message=>"must contain atleast one capital letter, one number and no special characters."
-  validates_format_of :city,:district,:state, :with=>/^[\w &_,\/.-]*$/, :message=>"has invalid characters. Only alphanumeric characters _-.,&/ and white spaces are allowed"
   validate :birth_date, :check_birth_date_valid
+  validates_format_of :email_2, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   # has_and_belongs_to_many :locations
   belongs_to :role
   #has_one :profile, :dependent=> :destroy
