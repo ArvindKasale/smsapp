@@ -4,8 +4,7 @@
 			<h2 class='title'>Sign in</h2>
 			<div class="inner">
 				<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-
-				<%= devise_error_messages! %>
+				
 				<div class='field'>
 					<%= f.label :email %>
 					<%= f.email_field :email, :class=>'string' %>

@@ -4,6 +4,8 @@
 
   #user-navigation
     %ul.wat-cf
+      - if (current_user rescue nil)
+        %li.red="Welcome, "+ current_user.name
       %li= link_to header_icon(:config, "Dashboard"), rails_admin_dashboard_path
       - if (root_path rescue nil)
         %li= link_to header_icon(:home, t('home.name').capitalize), root_path
@@ -13,5 +15,5 @@
         %li= link_to header_icon(:logout, t("admin.credentials.log_out")), (destroy_session_path(current_user) rescue '#')
       - if (current_user rescue nil)
         %li= ""
-
+        
         

@@ -728,7 +728,10 @@ a.button:active, button.button:active {
 .badge-red {
   background-color: #cc0000;
   color: white; }
-  
 
+/* To make date read only*/  
+.hasDatepicker input{
+  
+}
 
  

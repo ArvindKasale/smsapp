@@ -1,7 +1,7 @@
 class AgentCall < ActiveRecord::Base
   
-  validates_presence_of :user_id
-  belongs_to :user
+  validates_presence_of :user_id, :shop_id
+  belongs_to :salesman_user, :foreign_key => :user_id
   belongs_to :shop_keeper, :foreign_key => :shop_id  
   
   

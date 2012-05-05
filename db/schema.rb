@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421123204) do
+ActiveRecord::Schema.define(:version => 20120503172220) do
 
   create_table "agent_calls", :force => true do |t|
     t.integer  "user_id"
@@ -34,10 +34,21 @@ ActiveRecord::Schema.define(:version => 20120421123204) do
     t.string   "name"
     t.string   "phone_no"
     t.string   "email"
-    t.boolean  "status",     :default => true
+    t.boolean  "status",         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email_2"
+    t.string   "contact_person"
+    t.text     "address"
+    t.string   "street"
+    t.string   "area"
+    t.string   "city"
+    t.string   "pincode"
+    t.string   "district"
+    t.string   "state"
+    t.string   "fax"
+    t.string   "website"
+    t.string   "phone_number_2"
   end
 
   create_table "companies_products", :id => false, :force => true do |t|
@@ -62,6 +73,19 @@ ActiveRecord::Schema.define(:version => 20120421123204) do
     t.string   "state"
     t.string   "phone_no_2"
     t.string   "email_2"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.date     "date_placed"
+    t.date     "date_received"
+    t.integer  "company_id"
+    t.integer  "product_id"
+    t.integer  "quantity_placed"
+    t.integer  "quantity_received"
+    t.integer  "balance"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "product_prices", :force => true do |t|
@@ -133,6 +157,17 @@ ActiveRecord::Schema.define(:version => 20120421123204) do
     t.datetime "updated_at"
   end
 
+  create_table "salesman_daily_reports", :force => true do |t|
+    t.integer  "agent_call_id"
+    t.integer  "user_id"
+    t.integer  "shop_keeper_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.decimal  "sales_cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "shop_categories", :force => true do |t|
     t.string   "name"
     t.boolean  "status",     :default => true
@@ -143,7 +178,6 @@ ActiveRecord::Schema.define(:version => 20120421123204) do
   create_table "shop_keepers", :force => true do |t|
     t.string   "name"
     t.text     "address_1"
-    t.text     "products"
     t.boolean  "status",           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -156,6 +190,10 @@ ActiveRecord::Schema.define(:version => 20120421123204) do
     t.string   "district"
     t.string   "state"
     t.integer  "shop_category_id"
+    t.string   "phone_no_1"
+    t.string   "phone_no_2"
+    t.string   "email"
+    t.string   "email_2"
   end
 
   create_table "users", :force => true do |t|

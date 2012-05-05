@@ -76,10 +76,11 @@ class SaleItem < ActiveRecord::Base
   
   def quantity_is_positive
     p "&&&&&&&&********************&&&&&&&&&&&&"
+    if self.quantity
     unless self.quantity > 0
       errors.add(:quantity, "cant'be zero or negative.")  
     end
-      
+    end
   end
 
 end
