@@ -734,4 +734,30 @@ a.button:active, button.button:active {
   
 }
 
+.enum
+{
+	border-style: solid;
+    border-width: 1px;
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 12px;
+    height: 26px;
+    padding: 0 0 0 5px;
+    border-right: 0 none transparent !important;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    background: url("images/ui-bg_highlight-hard_100_f8f8f7_1x100.png") repeat-x scroll 50% top #F8F8F7;
+    border: 1px solid #ACACA0;
+    color: #222222;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 3px;
+    text-shadow: 0 1px 0 white;
+    color: #111111;
+    font-family: helvetica,arial,sans-serif;
+    font-family: sans-serif;
+    font-size: 12px;
+    width: 175px;
+}
+
  

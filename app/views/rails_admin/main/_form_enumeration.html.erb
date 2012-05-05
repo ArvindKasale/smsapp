@@ -2,7 +2,7 @@
     <label for="order_<%= field.name%>">
         <%= field.label%>
     </label>
-	<div class="selector hover focus" id="uniform-filter_select"><span style="-moz-user-select: none;"><%= field.value || "Select #{field.label}..."  %></span>
+	<div class="" id="uniform-filter_select">
     <%= form.select field.method_name, field.enum, {:include_blank => false}, field.html_attributes.merge({ :class => "enum" })%>
 	</div>
     <p class="help">

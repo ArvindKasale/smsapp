@@ -36,9 +36,20 @@ class ApplicationUser < User
          field :email_2
          field :birth_date
          
-         field :phone_no_1, :string
-         field :phone_no_2, :string
-	       field :password
+         field :phone_no_1, :string do
+           label "Mobile 1"
+         end
+         field :phone_no_2, :string do
+           help do
+             "Optional"
+           end
+           label "Mobile 2"
+         end
+	       field :password do
+	         help do
+	           "Required"
+	         end
+	       end
          field :password_confirmation
          field :pic do
             :paperclip

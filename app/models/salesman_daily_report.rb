@@ -1,9 +1,9 @@
 class SalesmanDailyReport < ActiveRecord::Base
   belongs_to :agent_call
-  belongs_to :salesman_user, :foreign_key => :user_id
+  #belongs_to :salesman_user, :foreign_key => :user_id
   belongs_to :shop_keeper
   belongs_to :product
-  validates_presence_of :agent_call_id, :shop_keeper_id, :user_id, :product_id, :quantity
+  validates_presence_of :agent_call_id, :shop_keeper_id, :product_id, :quantity
   validates_numericality_of :quantity, :only_integer=>true
   before_save :calculate_total
   
@@ -24,7 +24,7 @@ class SalesmanDailyReport < ActiveRecord::Base
     p "In before save"
     if (self.quantity)
       p "In valid"
-    self.sales_cost= self.quantity * self.product.price.to_f unless self.product.price.nil?
+      self.sales_cost= self.quantity * self.product.price.to_f unless self.product.price.nil?
     else
       p "In invalid"
       errors.add(:quantity, "can't be zero or negative.")

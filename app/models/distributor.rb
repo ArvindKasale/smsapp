@@ -1,6 +1,6 @@
 class Distributor < ActiveRecord::Base
 
-  validates_presence_of :name, :phone_no_1,:email, :address_1, :address_2, :city, :state, :district, :area
+  validates_presence_of :name, :phone_no_1,:email, :address_1, :address_2, :city, :state, :district, :area, :contact_person
   validates_uniqueness_of :name
   validates_numericality_of :phone_no_1,:pincode
   validates_numericality_of :phone_no_2,:unless=>lambda{|p| p.phone_no_2.nil?}
@@ -17,6 +17,7 @@ class Distributor < ActiveRecord::Base
      config.model ::Distributor do
        edit do
          field :name
+         field :contact_person
          field :address_1 do
            label do
              "Address"
@@ -34,15 +35,24 @@ class Distributor < ActiveRecord::Base
          field :district
          field :state
          field :phone_no_1
-         field :phone_no_2
+         field :phone_no_2 do
+            help do
+             "Optional"
+           end
+         end
          field :email do
            label "Email 1"
          end
-         field :email_2 
+         field :email_2 do
+            help do
+             "Optional"
+           end
+         end
          field :status
        end
        list do
          field :name
+         field :contact_person
          field :address
          field :phone_no_1
          field :phone_no_2

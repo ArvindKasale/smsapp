@@ -1,11 +1,12 @@
 class Order < ActiveRecord::Base
   belongs_to :company
   belongs_to :product
-  
+  validates_presence_of :status, :company_id, :product_id
   validates_presence_of :date_placed,:quantity_placed,:if=> lambda{|o| o.status=="Order Placed"}
   validates_presence_of :date_received, :quantity_received, :if=> lambda{|o| o.status=="Order Received"}
   validates_numericality_of :quantity_placed,:if=> lambda{|o| o.status=="Order Placed"}
   validates_numericality_of :quantity_received, :if=> lambda{|o| o.status=="Order Received"}
+  
   validate :dates_if_future
   
   before_save :calculate_balance
