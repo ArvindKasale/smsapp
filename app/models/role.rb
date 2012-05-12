@@ -5,6 +5,7 @@ class Role < ActiveRecord::Base
   validates_format_of :role, :with=>/^[a-zA-Z\s]+$/, :message=>"has invalid characters"
         
   has_many :users
+  
 
   def name
        role.to_s

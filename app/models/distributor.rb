@@ -17,7 +17,11 @@ class Distributor < ActiveRecord::Base
      config.model ::Distributor do
        edit do
          field :name
-         field :contact_person
+         field :contact_person do
+           help do
+             "Required. 255 characters or fewer."
+           end
+         end
          field :address_1 do
            label do
              "Address"
@@ -56,7 +60,7 @@ class Distributor < ActiveRecord::Base
          field :address
          field :phone_no_1
          field :phone_no_2
-         field :email
+         field :email 
          field :created_at
  
        end

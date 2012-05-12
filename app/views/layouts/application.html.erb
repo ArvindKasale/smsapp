@@ -44,25 +44,42 @@
 	<div id='container'>
 		<div id='header' style="background:#333333;height:80px;border-bottom:2px solid #999;">
 			<h1 class='title'><a href ="/"><span class='red'>JAS Inc</span><span class="white"> ltd.</span></a></h1>
-			<% if user_signed_in? %>
+			<% if sales_user_signed_in? %>
 			<div id="user-navigation" style="top:22px;">
 				<ul class="wat-cf">
+					<li class="headUser">
+						Welcome, <%=current_sales_user.name%>
+					</li>
 					<% if check_edit_access %>
 					<li>
 						<a href="/admin"><img src="/stylesheets/rails_admin/theme/activo/images/session/config.png?1333774181" alt="Dashboard" original-title="Dashboard"></a>
 					</li>
 					<% end %>
+					
 					<li>
 						<a href="/"><img title="Home" src="/stylesheets/rails_admin/theme/activo/images/session/home.png?1333774181" alt="Home"></a>
 					</li>
+					<% unless current_sales_user%>
 					<li>
 						<a href="/admin/user/1/edit"><img title="girishsambhare@gmail.com" src="/stylesheets/rails_admin/theme/activo/images/session/account.png?1333774181" alt="girishsambhare@gmail.com"></a>
 					</li>
+					<%end%>
 					<li>
-						<a href="/users/sign_out"><img title="Log out" src="/stylesheets/rails_admin/theme/activo/images/session/logout.png?1333774181" alt="Log out"></a>
+						<a href="/sales_users/sign_out"><img title="Log out" src="/stylesheets/rails_admin/theme/activo/images/session/logout.png?1333774181" alt="Log out"></a>
 					</li>
 					<li></li>
 				</ul>
+			</div>
+			<%else%>
+			<div id="user-navigation" style="top:22px;">
+					<ul class="wat-cf">
+						<li >
+							<a href="/users/sign_in"><img src="/stylesheets/rails_admin/theme/activo/images/session/config.png?1333774181" alt="Admin Login" title="Admin Login"></a>
+						</li>
+						<li >
+							<a href="/sales_users/sign_in"><img src="/stylesheets/rails_admin/theme/activo/images/session/account.png?1333774181" alt="Salesman Login" title="Salesman Login"></a>
+						</li>
+					</ul>
 			</div>
 			<% end %>
 		</div>

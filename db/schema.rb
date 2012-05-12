@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503172220) do
+ActiveRecord::Schema.define(:version => 20120512075849) do
 
   create_table "agent_calls", :force => true do |t|
     t.integer  "user_id"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(:version => 20120503172220) do
     t.string   "phone_no_1"
     t.string   "email"
     t.text     "address_1"
-    t.boolean  "status",     :default => true
+    t.boolean  "status",                        :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address_2"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20120503172220) do
     t.string   "state"
     t.string   "phone_no_2"
     t.string   "email_2"
+    t.string   "contact_person", :limit => nil
   end
 
   create_table "orders", :force => true do |t|
@@ -90,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20120503172220) do
 
   create_table "product_prices", :force => true do |t|
     t.integer  "product_id"
-    t.string   "price"
+    t.string   "price",      :limit => nil
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -157,6 +158,49 @@ ActiveRecord::Schema.define(:version => 20120503172220) do
     t.datetime "updated_at"
   end
 
+  create_table "sales_users", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "role_id",                               :default => 3
+    t.string   "name",                   :limit => 50
+    t.string   "address_1",              :limit => 50
+    t.string   "phone_no_1",             :limit => 10
+    t.date     "birth_date"
+    t.string   "address_2"
+    t.string   "street"
+    t.string   "area"
+    t.string   "city"
+    t.string   "pincode"
+    t.string   "district"
+    t.string   "state"
+    t.string   "phone_no_2"
+    t.string   "emergency_name"
+    t.string   "emergency_no"
+    t.string   "email_2"
+    t.string   "blood_group"
+    t.string   "work_exp"
+    t.string   "home_phone_1"
+    t.string   "home_phone_2"
+    t.string   "status"
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
+  end
+
+  add_index "sales_users", ["email"], :name => "index_sales_users_on_email", :unique => true
+  add_index "sales_users", ["reset_password_token"], :name => "index_sales_users_on_reset_password_token", :unique => true
+
   create_table "salesman_daily_reports", :force => true do |t|
     t.integer  "agent_call_id"
     t.integer  "user_id"
@@ -178,7 +222,7 @@ ActiveRecord::Schema.define(:version => 20120503172220) do
   create_table "shop_keepers", :force => true do |t|
     t.string   "name"
     t.text     "address_1"
-    t.boolean  "status",           :default => true
+    t.boolean  "status",                        :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "contact_person"
@@ -186,7 +230,7 @@ ActiveRecord::Schema.define(:version => 20120503172220) do
     t.string   "street"
     t.string   "area"
     t.string   "city"
-    t.string   "pincode"
+    t.string   "pincode",          :limit => 6
     t.string   "district"
     t.string   "state"
     t.integer  "shop_category_id"

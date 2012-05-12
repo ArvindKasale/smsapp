@@ -11,30 +11,30 @@ class SaleItemsController < ApplicationController
   end
     
   def index
-    #@sales_item=SaleItem.find_sales_of_user(current_user.id) 
+    #@sales_item=SaleItem.find_sales_of_user(current_sales_user.id) 
     p "###########################"
-    p current_user.id 
-    @sales_items=SaleItem.where("user_id=?",current_user.id)
+    p current_sales_user.id 
+    @sales_items=SaleItem.where("user_id=?",current_sales_user.id)
     p @sales_items
     p Product.all
   end
   
   def destroy
-    p current_user
+    p current_sales_user
     p "In destroy"
     @sales_item=SaleItem.find(params[:id])
     p @sales_item
     p "**********************************"
-    p current_user
+    p current_sales_user
     @sales_item.destroy
-    p current_user
+    p current_sales_user
     flash[:notice]="Sales item destroyed successfully"
     p "Destoyed"
     redirect_to sale_items_path
   end
   
   def destroy_me
-    p current_user
+    p current_sales_user
     p "In destroy me"
     @sales_item=SaleItem.find(params[:id])
     @sales_item.destroy
@@ -51,7 +51,8 @@ class SaleItemsController < ApplicationController
   def create
     @product=Product.all
     @sales_item=SaleItem.new(params[:sale_item])
-    @sales_item.user_id=current_user.id
+    p params[:sale_item]
+    @sales_item.user_id=current_sales_user.id
     #@sales_item=SaleItem.calculate_total_cost(@sales_item)
     respond_to do |format|
       
@@ -100,7 +101,7 @@ class SaleItemsController < ApplicationController
  
  def check_for_user
    @sales_item=SaleItem.find(params[:id])
-     unless @sales_item.user_id==current_user.id
+     unless @sales_item.user_id==current_sales_user.id
        flash[:notice]="You donot have access to that resource"
        puts "You dont have access to this resource"
        redirect_to root_path

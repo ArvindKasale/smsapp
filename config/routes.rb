@@ -1,5 +1,7 @@
 Rails3::Application.routes.draw do
   
+  devise_for :users
+  devise_for :sales_users
 
    get "dashboard/index"
   resources :sale_items do
@@ -12,7 +14,7 @@ Rails3::Application.routes.draw do
       get "my_profile"
     end
   end
-  devise_for :users
+  
 
 
   # The priority is based upon order of creation:

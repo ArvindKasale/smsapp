@@ -14,7 +14,7 @@
 			<div class="control">
 				<%= link_to "Add new",new_sale_item_path,:class=>"button"%>
 			</div>
-			<h2 class="title"><b>Sale Details for <%= current_user.name%></b></h2>
+			<h2 class="title"><b>Sale Details for <%= current_sales_user.name%></b></h2>
 			<div class="clear10"></div>
 			<div class="inner">
 				<table class="table grid">
@@ -27,7 +27,7 @@
 					</tr>
 					<%@sales_items.each do |sale|%>
 					<tr>
-						
+						<td><%= sale.product.name%></td>
 						<td><%= sale.quantity%></td>
 						<td>Rs. <%=sprintf "%.2f"% sale.total_cost unless sale.total_cost.nil? %></td>
 						<td><%= sale.sale_date%></td>

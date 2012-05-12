@@ -8,8 +8,12 @@ class ApplicationController < ActionController::Base
 #  stream
   
   def login_required
-    unless user_signed_in?
-      redirect_to "/users/sign_in"
+    unless sales_user_signed_in?
+      if user_signed_in?
+        redirect_to "/admin"
+      else 
+        redirect_to "/sales_users/sign_in"
+      end
     end
   end
   

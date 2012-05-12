@@ -1,5 +1,11 @@
-class SalesmanUser < User
+class SalesUser < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email,:email_2, :password, :password_confirmation, :remember_me, :name, :address_1, :birth_date, :phone_no_1, :address_2,:street, :area, :emergency_name,:emergency_no,:city,:district,:state,:pic
   has_attached_file :pic, :styles => {:thumb => "100x100" }
   # add a delete_<asset_name> method:
   attr_accessor :delete_pic
@@ -12,18 +18,18 @@ class SalesmanUser < User
   validates_length_of :pincode, :is => 6
   validates_numericality_of :phone_no_1, :emergency_no, :pincode
   validates_numericality_of :phone_no_2, :unless=>lambda{|p| p.phone_no_2.nil?}
-  validates_presence_of :role_id,:name,:birth_date, :address_1, :city, :state, :district, :phone_no_1, :emergency_name, :emergency_no, :home_phone_1
+  validates_presence_of :name,:birth_date, :address_1, :city, :state, :district, :phone_no_1, :emergency_name, :emergency_no, :home_phone_1
   validates_format_of :name, :emergency_name, :city, :district, :state, :with=>/^[a-zA-Z\s]+$/, :message=>"has invalid characters. Only alphabets and spaces are allowed"
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_format_of :email_2, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :unless=>lambda{|p| p.email_2.nil?}
 
-  has_many :sale_items
-  #has_many :agent_calls, :foreign_key => :user_id, :class_name => "AgentCall"
+  has_many :sale_items, :foreign_key => :user_id, :class_name => "SaleItem"
+  has_many :agent_calls, :foreign_key => :user_id, :class_name => "AgentCall"
   validates_presence_of :area
 
   RailsAdmin.config do |config|
-    config.model ::SalesmanUser do
-      label "Salesman Bio Data"
+    config.model ::SalesUser do
+      label "Salesman User"
       edit do
         field :name
         field :email do
@@ -99,10 +105,6 @@ class SalesmanUser < User
     end
   end
 
-  # def method_missing(meth, *args, &block)
-#   
-      # return ""
-#  
-  # end
-
+  
+  
 end

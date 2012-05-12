@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
 
 
-  validates_presence_of :name, :phone_no,:email, :contact_person, :city, :state, :address,:area,:website, :pincode, :district
+  validates_presence_of :name, :phone_no,:email, :contact_person, :city, :state, :address,:area,:website, :pincode, :district, :fax, :website
   validates_uniqueness_of :name,:email, :email_2
   validates_numericality_of :phone_no
   validates_numericality_of :phone_number_2, :unless=>lambda{|p| p.phone_number_2.nil?}
@@ -10,6 +10,8 @@ class Company < ActiveRecord::Base
   validates_format_of :city, :state, :address,:area,:district,:with=>/^[\w &_,\/.-]*$/, :message=>"has invalid characters. Only alphanumeric characters _-.,&/ and white spaces are allowed"
   validates_format_of :email, :with=>/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/, :message=>"has invalid characters."
   validates_format_of :email_2, :with=>/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/,:message=>"has invalid characters.", :unless=>lambda{|p| p.email_2.nil?}
+  validates_format_of :website, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+  validates_numericality_of :fax, :unless=>lambda{|p| p.fax.nil?}
   has_and_belongs_to_many :products
 
  RailsAdmin.config do |config|
@@ -29,13 +31,13 @@ class Company < ActiveRecord::Base
       field :district
       field :state
       field :phone_no do
-        label "Phone Number 1"
+        label "Phone No 1"
       end
       field :phone_number_2 do
          help do
              "Optional"
          end
-        label "Phone Number 2"
+        label "Phone No 2"
       end
       field :fax
       field :website
@@ -53,9 +55,11 @@ class Company < ActiveRecord::Base
   list do
       field :name
       field :contact_person
-      field :address_full
+      field :address_full do
+        label "Address"
+      end
       field :phone_no do
-        label "Phone Number 1"
+        label "Phone No 1"
       end
       field :website
       field :email do

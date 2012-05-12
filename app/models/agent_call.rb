@@ -1,14 +1,14 @@
 class AgentCall < ActiveRecord::Base
   
   validates_presence_of  :shop_id
-  #belongs_to :salesman_user, :foreign_key => :user_id
+  belongs_to :sales_user, :foreign_key => :user_id
   belongs_to :shop_keeper, :foreign_key => :shop_id  
   
   
   RailsAdmin.config do |config|
     config.model ::AgentCall do
       edit do
-        
+        field :user_id
         field :shop_id
         field :category, :enum do
           enum do
@@ -24,7 +24,7 @@ class AgentCall < ActiveRecord::Base
       end
       
       list do
-       
+        field :user_id
         field :shop_id
         field :category
         field :attending
