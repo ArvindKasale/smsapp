@@ -84,7 +84,7 @@
 			<% end %>
 		</div>
 		<div id='wrapper' class="wat-cf">
-			<div id='main' style="width:75%;">
+			<div id='main' style="width:97%;">
 			<%if flash[:notice] %>
 				<div class="flash">
 					<div class="message notice">
@@ -112,4 +112,63 @@
 		</div>
 	</div>
 	</div>
+
+<style>
+
+
+.hasDatepicker {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("../../images/rails_admin/calendar.png");
+    background-origin: padding-box;
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    padding-right: 20px;
+    width: 150px;
+    border-bottom-color: #E3E9EF;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: #E3E9EF;
+    border-left-style: solid;
+    border-left-width: 1px;
+    
+    border-right-color-ltr-source: physical;
+    border-right-color-rtl-source: physical;
+    border-right-color-value: #DBDFE6;
+    border-right-style-ltr-source: physical;
+    border-right-style-rtl-source: physical;
+    border-right-style-value: solid;
+    border-right-width-ltr-source: physical;
+    border-right-width-rtl-source: physical;
+    border-right-width-value: 1px;
+    border-top-color: #ABADB3;
+    border-top-style: solid;
+    border-top-width: 1px;
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 12px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    
+    
+    }
+
+</style>
+
+<script>
+
+$j(document).ready(function($){
+  $(".date").each(function(){
+  var data = $(this).val();
+  
+  $(this).datetimepicker({"showTime":false,"timepicker":{"amPmText":["",""],"minuteText":"Minute","value":"","showPeriod":false,"hourText":"Hour"},"datepicker":{"monthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"firstDay":1,"dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dateFormat":"MM dd, yy","value":$(this).val(),"dayNamesMin":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"]}});
+});
+});
+
+</script>
+
+	
 </body>

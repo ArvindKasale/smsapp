@@ -1,5 +1,11 @@
 Rails3::Application.routes.draw do
   
+  get "reports/index"
+  post "reports/index"
+  
+  get "reports/salesman"
+  post "reports/salesman"
+
   devise_for :users
   devise_for :sales_users
 
