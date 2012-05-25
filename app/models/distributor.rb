@@ -1,6 +1,6 @@
 class Distributor < ActiveRecord::Base
 
-  validates_presence_of :name, :phone_no_1,:email, :address_1, :address_2, :city, :state, :district, :area, :contact_person
+  validates_presence_of :name, :phone_no_1,:email, :address_1, :city, :state, :district, :area, :contact_person
   validates_uniqueness_of :name
   validates_numericality_of :phone_no_1,:pincode
   validates_numericality_of :phone_no_2,:unless=>lambda{|p| p.phone_no_2.nil?}
@@ -8,8 +8,7 @@ class Distributor < ActiveRecord::Base
   validates_length_of :phone_no_1, :is => 10
   validates_length_of :phone_no_2, :is => 10, :unless=>lambda{|p| p.phone_no_2.nil?}
   validates_format_of :name, :area, :city,:district,:state, :with=>/^[a-zA-Z \s]+$/, :message=>"has invalid characters. Only alphabets are allowed"
-  validates_format_of :street, :with=>/^[a-zA-Z \s]+$/, :message=>"has invalid characters. Only alphabets are allowed", :unless=>lambda{|p| p.street.nil?}
-  #validates_format_of :name, :with=>/^[\w &_,\/.-]*$/, :message=>"has invalid characters. Only alphanumeric characters _-.,&/ and white spaces are allowed"
+  validates_format_of :name, :with=>/^[\w &_,\/.-]*$/, :message=>"has invalid characters. Only alphanumeric characters _-.,&/ and white spaces are allowed"
   validates_format_of :address_1,:address_2, :with=>/^[\w &_,\/.-]*$/, :message=>"has invalid characters. Only alphanumeric characters _-.,&/ and white spaces are allowed"
   validates_format_of :email, :with=>/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/, :message=>"has invalid characters."
   validates_format_of :email_2, :with=>/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/, :message=>"has invalid characters.",:unless=>lambda{|p| p.email_2.nil?}
@@ -35,10 +34,19 @@ class Distributor < ActiveRecord::Base
          field :street
          field :area
          field :city
-         field :pincode
+         field :pincode do
+           help do
+             "Required. 6 characters."
+           end
+           
+         end
          field :district
          field :state
-         field :phone_no_1
+         field :phone_no_1 do
+           help do
+             "Required. 10 characters."
+           end
+         end
          field :phone_no_2 do
             help do
              "Optional"

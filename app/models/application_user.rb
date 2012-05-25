@@ -27,7 +27,11 @@ class ApplicationUser < User
          field :street
       #   field :area
          field :city
-         field :pincode
+         field :pincode do
+           help do
+             "Required. 6 characters."
+           end
+         end
          field :district
          field :state
          field :email do
@@ -38,6 +42,9 @@ class ApplicationUser < User
          
          field :phone_no_1, :string do
            label "Mobile 1"
+           help do
+             "Required. 10 characters."
+           end
          end
          field :phone_no_2, :string do
            help do
@@ -62,6 +69,9 @@ class ApplicationUser < User
          field :emergency_no do
            label do
              "Emergency Contact no."
+           end
+           help do
+             "Required. 10 characters. "
            end
          end
        end

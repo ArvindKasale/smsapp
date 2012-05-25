@@ -27,7 +27,11 @@ class Company < ActiveRecord::Base
       field :street
       field :area
       field :city
-      field :pincode
+      field :pincode do
+        help do
+          "Required. 6 characters."
+        end
+      end
       field :district
       field :state
       field :phone_no do
@@ -39,7 +43,11 @@ class Company < ActiveRecord::Base
          end
         label "Phone No 2"
       end
-      field :fax
+      field :fax do
+        help do
+          "Optional"
+        end
+      end
       field :website
       field :email do
         label "Email 1"

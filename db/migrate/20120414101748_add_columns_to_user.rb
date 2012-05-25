@@ -4,14 +4,14 @@ class AddColumnsToUser < ActiveRecord::Migration
     add_column :users, :street, :string
     add_column :users, :area, :string
     add_column :users, :city, :string
-    add_column :users, :pincode, :string
+    add_column :users, :pincode, :string, :limit=> 6
     add_column :users, :district, :string
     add_column :users, :state, :string
     rename_column :users, :address, :address_1
     rename_column :users, :phone_no, :phone_no_1
-    add_column :users, :phone_no_2, :string
+    add_column :users, :phone_no_2, :string, :limit=> 10
     add_column :users, :emergency_name, :string
-    add_column :users, :emergency_no, :string
+    add_column :users, :emergency_no, :string, :limit=> 10
   end
 
   def self.down

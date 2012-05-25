@@ -29,7 +29,11 @@ class ShopKeeper < ActiveRecord::Base
         field :street
         field :area
         field :city
-        field :pincode
+        field :pincode do
+          help do
+            "Required. 6 characters."
+          end
+        end
         field :district
         field :state
         field :email
@@ -40,6 +44,9 @@ class ShopKeeper < ActiveRecord::Base
         end
         field :phone_no_1 do
           label "Phone Number 1"
+          help do
+            "Required. 10 characters."
+          end
         end
         field :phone_no_2 do
            help do

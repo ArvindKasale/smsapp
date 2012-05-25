@@ -51,12 +51,19 @@ class SalesUser < ActiveRecord::Base
           end
         end
         field :city
-        field :pincode
+        field :pincode do
+          help do
+            "Required. 6 characters."
+          end
+        end
         field :district
         field :state
         field :birth_date
         field :phone_no_1, :string do
           label "Mobile 1"
+          help do
+            "Required. 10 characters."
+          end
         end
         field :phone_no_2,:string do
           help do
@@ -66,6 +73,9 @@ class SalesUser < ActiveRecord::Base
         end
         field :home_phone_1, :string do
           label "Home Phone 1"
+          help do
+            "Required."
+          end
         end
         field :home_phone_2, :string do
           help do

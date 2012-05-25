@@ -5,7 +5,7 @@ class AddColumnsToShopkeeper < ActiveRecord::Migration
     add_column :shop_keepers, :street, :string
     add_column :shop_keepers, :area, :string
     add_column :shop_keepers, :city, :string
-    add_column :shop_keepers, :pincode, :string
+    add_column :shop_keepers, :pincode, :string, :limit=> 6
     add_column :shop_keepers, :district, :string
     add_column :shop_keepers, :state, :string
     add_column :shop_keepers, :shop_category_id, :integer

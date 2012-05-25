@@ -3,7 +3,7 @@ class AgentCall < ActiveRecord::Base
   validates_presence_of  :shop_id
   belongs_to :sales_user, :foreign_key => :user_id
   belongs_to :shop_keeper, :foreign_key => :shop_id  
-  
+  validate :check_duration
   
   RailsAdmin.config do |config|
     config.model ::AgentCall do
@@ -37,6 +37,13 @@ class AgentCall < ActiveRecord::Base
     end
   end
   
-  
+  def check_duration
+      if self.duration
+        unless self.duration <= DateTime.now
+          p "Invalid Date"
+          errors.add(:duration, "can't be in the future.")
+        end
+      end
+  end
   
 end

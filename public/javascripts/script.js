@@ -1,9 +1,22 @@
 $(document).ready(function(){
+	
+
+if($("#order_status").val()=="Order Placed")
+{
+	
+	placedOrder();
+}
+else if($("#order_status").val()=="Order Received")
+{
+	
+	receivedOrder();
+}	
+/*	
 	$(".order_date_received").children().attr("disabled","disabled");
 	$("#order_quantity_received").attr("disabled","disabled");
 	$(".order_date_received").hide();
 	$(".order_quantity_received").hide();
-	
+*/	
 $('.string').keyup(function(){
 	var email=(this.id).split("_");
 	var length=email.length
@@ -41,10 +54,27 @@ $('.string').focusout(function(){
 	this.value=this.value.toUpperCase();
 });
 */
+
+
+
+
 $("#order_status").change(function(){
 	if($(this).val()=="Order Placed")
 	{
-		$(".order_date_placed").show();
+		placedOrder();
+		
+	}
+	else
+	{
+		receivedOrder();
+	}
+	});
+ 
+
+})
+
+function placedOrder(){
+	$(".order_date_placed").show();
 		$(".order_quantity_placed").show();
 		$(".order_date_placed").children().removeAttr("disabled");
 		$(".order_date_received").children().val("");
@@ -55,11 +85,10 @@ $("#order_status").change(function(){
 		//$(".order_date_received").attr("disabled");
 		$("#order_quantity_placed").removeAttr("disabled");
 		$(".order_quantity_received").hide();
-		
-	}
-	else
-	{
-		$(".order_date_placed").children().attr("disabled","disabled");
+}
+function receivedOrder()
+{
+	$(".order_date_placed").children().attr("disabled","disabled");
 		$(".order_date_placed").children().val("");
 		$("#order_quantity_placed").attr("disabled","disabled");
 		$("#order_quantity_placed").val("");
@@ -69,8 +98,4 @@ $("#order_status").change(function(){
 		$(".order_date_received").show();
 		$(".order_quantity_received").show();
 		$(".order_date_received").children().removeAttr("disabled");
-	}
-	});
-
-
-})
+}

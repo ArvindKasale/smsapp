@@ -25,10 +25,10 @@ class DeviseCreateSalesUsers < ActiveRecord::Migration
     add_column :sales_users, :street, :string
     add_column :sales_users, :area, :string
     add_column :sales_users, :city, :string
-    add_column :sales_users, :pincode, :string
+    add_column :sales_users, :pincode, :string, :limit=> 6
     add_column :sales_users, :district, :string
     add_column :sales_users, :state, :string
-    add_column :sales_users, :phone_no_2, :string
+    add_column :sales_users, :phone_no_2, :string, :limit=> 10
     add_column :sales_users, :emergency_name, :string
     add_column :sales_users, :emergency_no, :string
     add_column :sales_users, :email_2, :string

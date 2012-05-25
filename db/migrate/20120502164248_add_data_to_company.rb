@@ -4,12 +4,12 @@ class AddDataToCompany < ActiveRecord::Migration
     add_column :companies, :street, :string
     add_column :companies, :area, :string
     add_column :companies, :city, :string
-    add_column :companies, :pincode, :string
+    add_column :companies, :pincode, :string, :limit=> 6
     add_column :companies, :district, :string
     add_column :companies, :state, :string
     add_column :companies, :fax, :string
     add_column :companies, :website, :string
-    add_column :companies, :phone_number_2, :string
+    add_column :companies, :phone_number_2, :string, :limit=> 10
   end
 
   def self.down

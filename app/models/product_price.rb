@@ -5,4 +5,16 @@ class ProductPrice < ActiveRecord::Base
   validates_numericality_of :price
   validates_length_of :price, :maximum => 5
 
+  RailsAdmin.config do |config|
+     config.model ::ProductPrice do
+       edit do
+         field :product_id
+         field :price do
+             help do
+              "Required"
+             end
+         end  
+       end
+     end
+  end
 end
