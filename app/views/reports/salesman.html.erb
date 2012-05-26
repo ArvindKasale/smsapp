@@ -12,29 +12,78 @@
         <li class="first active">
             <a href="/reports/salesman">Overall sales by Individual salesman</a>
         </li>
-
-        <li class="first">
-            <a href="/data/time">Requests Date Distribution</a>
-        </li>
-        <li class="first ">
-            <a href="/data/ratio">Success / Failure Ratio</a>
-        </li>
-        <li class="first ">
-            <a href="/data/trend">View Trend</a>
-
-        </li>
     </ul>
 </div>
 
-<form id ="form" method="post" action = "/reports/index">
+<form id ="form" method="post" action = "/reports/salesman">
+<input type="hidden" value="" name="export" id="export" >
   <div class="control" style="margin:0px 10px; 0 0" >
-	<a class="button" onclick="$j('#form').submit();" href="javascript:void(0);">Filter</a>
+	<a class="button" onclick="$j('#form').submit();" href="javascript:void(0);">Apply Filter</a>
+	<a class="button" href="/reports/salesman">Clear All Filters</a>
    </div>
-    <p style="text-align:center">
+   
+    <table class="flter" cellsapcing="5" cellpadding="5" >
+    <tr>
+    <td>
         From Date : 
         <input type="text" value="<%= @start_date %>" size="30" name="from_date" id="from_date" class="string date">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To Date :
+       </td>
+       <td> 
+        To Date :
         <input type="text" value="<%=@end_date %>" size="30" name="to_date" id="to_date" class="string date">
+        </td>
+        
+</tr>
+<tr>
+<td>
+        Category :
+        <select name="category">
+        <option value="">All</option>
+        <%= options_for_select(Category.all.collect{|c| [c.name, c.id] },params[:category])  %> 
+        </select>
+</td>
+<td>
+        Product :
+        <select name="product">
+        <option value="">All</option>
+        <%= options_for_select(Product.all.collect{|p| [p.name, p.id] },params[:product])  %> 
+        </select>
+</td>
+</tr>
+<tr>    
+        <td>
+        Area :
+        <select name="area">
+        <option value="">All</option>
+        <%= options_for_select(SalesUser.find(:all, :group => :area, :order => :area).collect{|s| [s.area] }, params[:area])  %> 
+        </select>
+        </td>
+        <td>
+        District :
+        <select name="district">
+        <option value="">All</option>
+        <%= options_for_select(SalesUser.find(:all, :group => :district, :order => :district).collect{|s| [s.district] },params[:district])  %> 
+        </select>
+        
+        </td>
+
+</tr>
+<tr>    <td>
+        City :
+        <select name="city">
+        <option value="">All</option>        
+        <%= options_for_select(SalesUser.find(:all, :group => :city, :order => :city).collect{|s| [s.city] }, params[:city])  %> 
+        </select>
+        
+        </td>
+        <td>
+        Sales Man :
+        <select name="user">
+        <option value="">All</option>        
+        <%= options_for_select(SalesUser.find(:all, :group => :name, :order => :name).collect{|s| [s.name, s.id] }, params[:user])  %> 
+        </select>
+        
+        </td>
     </p>
   
 </form>
@@ -48,6 +97,7 @@
 </script>
 
 <div class="clear10"></div>
+<div class="clear10"></div>
 
 <h2 class="title"><b><%=@message%></b></h2>
 
@@ -57,24 +107,59 @@
 						<th>Salesman Name</th>
 						<th>Category</th>
 						<th>Product</th>
+						<th>Area</th>
+						<th>District</th>
+						<th>City</th>
 						<th>Amount</th>
 						<th>% of sales by Salesman</th>
 					</tr>
 					<% @sale_items.each do |s| %> 
 					<tr>
-						<td><%=s.sale_date.strftime("%b %d, %Y") %></td>
-						<td><%=s.sales_user.name unless s.sales_user.nil? %></td>
-						<td><%=s.product.category.name%></td>
-						<td><%=s.product.name%></td>
-						<td><%=s.product.price%></td>
-						<td><%= sprintf("%0.2f", s.product.price.to_f / @sum * 100) + "%" %></td>
+						<td><%=s.created_at.strftime("%b %d, %Y") %></td>
+						<td><%=s.user_name %></td>
+						<td><%=s.category%></td>
+						<td><%=s.product%></td>
+						<td><%=s.area%></td>
+						<td><%=s.district%></td>
+						<td><%=s.city%></td>
+						<td><%#=Product.find_by_name(s.product).price%></td>
+						<td><%#= sprintf("%0.2f", Product.find_by_name(s.product).price.to_f / @sum * 100) + "%" %></td>
 					</tr>
 					<% end %>
 				</tbody></table>
 
+   <div class="control" style="margin:0px 10px; 0 0" >
+	<a class="button" onclick="$j('#form').attr('action','/reports/index.xls');$j('#form').submit();" href="javascript:void(0)">Export to Excel</a>
+   </div>
 
+<div class="clear"></div>
 
    </div>
                         </div>
                     </div>
                 </div>
+
+
+<style>
+
+select {
+width:166px;
+margin-right:8px;
+}
+
+table.flter {
+width:600px;
+margin-left:250px;
+cell-padding:10px;
+padding:10px;
+}
+
+table.flter tr td {
+
+width:280px;
+
+}
+
+table.flter select,table.flter input { float:right;}
+
+</style>                
