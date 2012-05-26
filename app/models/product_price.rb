@@ -13,7 +13,17 @@ class ProductPrice < ActiveRecord::Base
              help do
               "Required"
              end
+         end
+         field :date do
+           label do
+             "Date"
+           end
          end  
+       end
+       list do
+         field :product_id
+         field :price
+         field :date
        end
      end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512075849) do
+ActiveRecord::Schema.define(:version => 20120526182839) do
 
   create_table "agent_calls", :force => true do |t|
     t.integer  "user_id"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.boolean  "attending",  :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "duration"
+    t.date     "duration"
     t.text     "message"
     t.string   "category"
   end
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
-    t.string   "phone_no"
+    t.string   "phone_no",       :limit => 10
     t.string   "email"
-    t.boolean  "status",         :default => true
+    t.boolean  "status",                       :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email_2"
@@ -43,12 +43,12 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.string   "street"
     t.string   "area"
     t.string   "city"
-    t.string   "pincode"
+    t.string   "pincode",        :limit => 6
     t.string   "district"
     t.string   "state"
     t.string   "fax"
     t.string   "website"
-    t.string   "phone_number_2"
+    t.string   "phone_number_2", :limit => 10
   end
 
   create_table "companies_products", :id => false, :force => true do |t|
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
 
   create_table "distributors", :force => true do |t|
     t.string   "name"
-    t.string   "phone_no_1"
+    t.string   "phone_no_1",     :limit => 10
     t.string   "email"
     t.text     "address_1"
     t.boolean  "status",                        :default => true
@@ -68,12 +68,14 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.string   "street"
     t.string   "area"
     t.string   "city"
-    t.string   "pincode"
+    t.string   "pincode",        :limit => 6
     t.string   "district"
     t.string   "state"
-    t.string   "phone_no_2"
+    t.string   "phone_no_2",     :limit => 10
     t.string   "email_2"
     t.string   "contact_person", :limit => nil
+    t.string   "fax"
+    t.string   "website"
   end
 
   create_table "orders", :force => true do |t|
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.string   "price",      :limit => nil
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
   end
 
   create_table "products", :force => true do |t|
@@ -143,9 +146,10 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
   create_table "roles", :force => true do |t|
-    t.string   "role",       :limit => 25
+    t.string   "role",        :limit => 25
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "sale_items", :force => true do |t|
@@ -171,7 +175,6 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role_id",                               :default => 3
     t.string   "name",                   :limit => 50
     t.string   "address_1",              :limit => 50
     t.string   "phone_no_1",             :limit => 10
@@ -180,10 +183,10 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.string   "street"
     t.string   "area"
     t.string   "city"
-    t.string   "pincode"
+    t.string   "pincode",                :limit => 6
     t.string   "district"
     t.string   "state"
-    t.string   "phone_no_2"
+    t.string   "phone_no_2",             :limit => 10
     t.string   "emergency_name"
     t.string   "emergency_no"
     t.string   "email_2"
@@ -198,9 +201,6 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.datetime "pic_updated_at"
   end
 
-  add_index "sales_users", ["email"], :name => "index_sales_users_on_email", :unique => true
-  add_index "sales_users", ["reset_password_token"], :name => "index_sales_users_on_reset_password_token", :unique => true
-
   create_table "salesman_daily_reports", :force => true do |t|
     t.integer  "agent_call_id"
     t.integer  "user_id"
@@ -214,15 +214,16 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
 
   create_table "shop_categories", :force => true do |t|
     t.string   "name"
-    t.boolean  "status",     :default => true
+    t.boolean  "status",      :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "shop_keepers", :force => true do |t|
     t.string   "name"
     t.text     "address_1"
-    t.boolean  "status",                        :default => true
+    t.boolean  "status",                         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "contact_person"
@@ -234,8 +235,8 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.string   "district"
     t.string   "state"
     t.integer  "shop_category_id"
-    t.string   "phone_no_1"
-    t.string   "phone_no_2"
+    t.string   "phone_no_1",       :limit => 10
+    t.string   "phone_no_2",       :limit => 10
     t.string   "email"
     t.string   "email_2"
   end
@@ -267,12 +268,12 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.string   "street"
     t.string   "area"
     t.string   "city"
-    t.string   "pincode"
+    t.string   "pincode",                :limit => 6
     t.string   "district"
     t.string   "state"
-    t.string   "phone_no_2"
+    t.string   "phone_no_2",             :limit => 10
     t.string   "emergency_name"
-    t.string   "emergency_no"
+    t.string   "emergency_no",           :limit => 10
     t.string   "email_2"
     t.string   "blood_group"
     t.string   "work_exp"
@@ -280,8 +281,5 @@ ActiveRecord::Schema.define(:version => 20120512075849) do
     t.string   "home_phone_2"
     t.string   "status"
   end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

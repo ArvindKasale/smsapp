@@ -29,21 +29,15 @@ class ShopKeeper < ActiveRecord::Base
         field :street
         field :area
         field :city
+        field :district
+        field :state
         field :pincode do
           help do
             "Required. 6 characters."
           end
         end
-        field :district
-        field :state
-        field :email
-        field :email_2 do
-           help do
-             "Optional"
-           end
-        end
         field :phone_no_1 do
-          label "Phone Number 1"
+          label "Phone No 1"
           help do
             "Required. 10 characters."
           end
@@ -52,8 +46,15 @@ class ShopKeeper < ActiveRecord::Base
            help do
              "Optional"
            end
-          label "Phone Number 2"
+          label "Phone No 2"
         end
+        field :email
+        field :email_2 do
+           help do
+             "Optional"
+           end
+        end
+        
         field :shop_category_id
       end
       list do

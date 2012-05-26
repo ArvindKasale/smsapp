@@ -45,9 +45,9 @@ class SalesmanUser < User
           end
         end
         field :city
-        field :pincode
         field :district
         field :state
+        field :pincode
         field :birth_date
         field :phone_no_1, :string do
           label "Mobile 1"

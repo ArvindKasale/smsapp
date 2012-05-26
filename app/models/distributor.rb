@@ -12,6 +12,9 @@ class Distributor < ActiveRecord::Base
   validates_format_of :address_1,:address_2, :with=>/^[\w &_,\/.-]*$/, :message=>"has invalid characters. Only alphanumeric characters _-.,&/ and white spaces are allowed"
   validates_format_of :email, :with=>/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/, :message=>"has invalid characters."
   validates_format_of :email_2, :with=>/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/, :message=>"has invalid characters.",:unless=>lambda{|p| p.email_2.nil?}
+  validates_format_of :website, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix, :unless=> lambda{|p| p.website.nil?}
+  validates_numericality_of :fax, :unless=>lambda{|p| p.fax.nil?}
+  
   RailsAdmin.config do |config|
      config.model ::Distributor do
        edit do
@@ -34,14 +37,13 @@ class Distributor < ActiveRecord::Base
          field :street
          field :area
          field :city
+         field :district
+         field :state
          field :pincode do
            help do
              "Required. 6 characters."
            end
-           
          end
-         field :district
-         field :state
          field :phone_no_1 do
            help do
              "Required. 10 characters."
@@ -60,6 +62,16 @@ class Distributor < ActiveRecord::Base
              "Optional"
            end
          end
+         field :fax do
+          help do
+            "Optional"
+          end
+         end
+         field :website do
+            help do
+              "Optional"
+            end
+          end
          field :status
        end
        list do
