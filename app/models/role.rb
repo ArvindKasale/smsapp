@@ -15,10 +15,11 @@ class Role < ActiveRecord::Base
     config.model ::Role do
     list do
       field :role
+      field :description
       field :user_list do
          label "Users"       
       end
-     
+      
     end
   end
   end

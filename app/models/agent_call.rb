@@ -15,10 +15,10 @@ class AgentCall < ActiveRecord::Base
             {"Morning Call" => "Morning Call" , "Evening Call" => "Evening Call" }
           end
         end
-        field :attending
+        #field :attending
         field :message
         field :duration do
-          label "Date & call duration"
+          label "Date"
         end                        
         
       end
@@ -27,9 +27,9 @@ class AgentCall < ActiveRecord::Base
         field :user_id
         field :shop_id
         field :category
-        field :attending
+        #field :attending
         field :duration do
-          label "Date & call duration"
+          label "Date"
         end                        
         
       end

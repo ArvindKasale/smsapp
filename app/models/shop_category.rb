@@ -9,10 +9,12 @@ class ShopCategory < ActiveRecord::Base
       
       list do
         field :name
+        field :description
       end
       
       edit do
         field :name
+        field :description
       end
       
     end

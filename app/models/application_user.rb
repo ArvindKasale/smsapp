@@ -6,13 +6,16 @@ class ApplicationUser < User
  before_validation { self.pic.clear if self.delete_pic == '1' }
  
  validates_uniqueness_of :name
- validates_length_of :phone_no_1, :emergency_no, :is => 10
+ validates_length_of :phone_no_1, :is => 10
+ validates_length_of :emergency_no, :is=> 10, :unless=>lambda{|p| p.emergency_no.nil?}
  validates_length_of :phone_no_2,:is => 10,  :unless=>lambda{|p| p.phone_no_2.nil?}
   validates_length_of :pincode, :is => 6
-  validates_numericality_of :phone_no_1, :emergency_no, :pincode
+  validates_numericality_of :emergency_no, :unless=> lambda{|p| p.emergency_no.nil?}
+  validates_numericality_of :phone_no_1, :pincode
   validates_numericality_of :phone_no_2, :unless=>lambda{|p| p.phone_no_2.nil?}
-  validates_presence_of :role_id,:name,:birth_date, :address_1, :city, :state, :district, :phone_no_1, :emergency_name, :emergency_no
-  validates_format_of :name, :emergency_name, :city, :district, :state, :with=>/^[a-zA-Z\s]+$/, :message=>"has invalid characters. Only alphabets and spaces are allowed"
+  validates_presence_of :role_id,:name,:birth_date, :address_1, :city, :state, :district, :phone_no_1
+  validates_format_of :name, :city, :district, :state, :with=>/^[a-zA-Z\s]+$/, :message=>"has invalid characters. Only alphabets and spaces are allowed"
+  validates_format_of :emergency_name,:with=>/^[a-zA-Z\s]+$/, :message=>"has invalid characters. Only alphabets and spaces are allowed", :unless=> lambda{|p| p.emergency_name.nil?} 
  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
  validates_format_of :email_2, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :unless=>lambda{|p| p.email_2.nil?}
  RailsAdmin.config do |config|
@@ -24,20 +27,33 @@ class ApplicationUser < User
            label "Address"
          end
       #   field :address_2
-         field :street
+         field :street do
+           help do
+             "Optional"
+           end
+         end
       #   field :area
          field :city
+         field :district
+         field :state
          field :pincode do
            help do
              "Required. 6 characters."
            end
          end
-         field :district
-         field :state
+         field :blood_group do
+           help do
+             "Optional"
+           end
+         end
          field :email do
            label "Email 1"
          end
-         field :email_2
+         field :email_2 do
+           help do
+             "Optional"
+           end
+         end
          field :birth_date
          
          field :phone_no_1, :string do
@@ -71,7 +87,7 @@ class ApplicationUser < User
              "Emergency Contact no."
            end
            help do
-             "Required. 10 characters. "
+             "Optional."
            end
          end
        end

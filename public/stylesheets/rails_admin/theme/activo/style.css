@@ -764,3 +764,7 @@ a.button:active, button.button:active {
  	font-size: 12px;
  	color: #FFFFFF;
  }
+ #title
+ {
+ 	text-transform: uppercase;
+ }

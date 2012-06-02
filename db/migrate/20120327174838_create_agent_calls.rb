@@ -3,7 +3,7 @@ class CreateAgentCalls < ActiveRecord::Migration
     create_table :agent_calls do |t|
    	 t.integer :user_id
       t.integer :shop_id
-      t.boolean :attending, :default => 1  
+      
 	 t.integer :message
       t.timestamps
     end
