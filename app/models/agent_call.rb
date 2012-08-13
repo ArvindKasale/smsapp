@@ -25,6 +25,7 @@ class AgentCall < ActiveRecord::Base
       
       list do
         field :user_id
+        #
         field :shop_id
         field :category
         #field :attending
